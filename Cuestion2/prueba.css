@@ -1,0 +1,12 @@
+h1.display{
+display: none;
+}
+
+h1.visibility{
+    visibility:hidden
+}
+
+h1.position{
+    position: relative;
+    top: 400px; left: 400px;
+}
