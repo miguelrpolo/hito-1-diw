@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestión 3</title>
+</head>
+<body>
+    <h1>Cuestión 3</h1>
+    <h2>Nota: Los valores se guardan en el almacenamiento nada más dejar de escribir (onblur). Es recomendable usar este archivo como apoyo, utiliza el documento principal para guiarte</h2>
+    <input type="text" id="cookies" onblur="guardar(this)"> Introducir datos mediante cookies
+    <br>
+    <input type="text" id="cookiesCaducidad" onblur="guardar(this)"> Introducir datos mediante cookies que no caduca nunca
+    <br>
+    <input type="text" id="localStorage" onblur="guardar(this)"> Introducir datos mediante localStorage
+    <br>
+    <button id="localStorageLista" onclick="guardar(this)"> Introducir una lista en localStorage</button>
+    <br>
+    <input type="text" id="sessionStorage" onblur="guardar(this)"> Introducir datos mediante sessionStorage
+    <br>
+    <button id="sessionStorageFecha" onclick="guardar(this)"> Introducir una fecha predefinida en sessionStorage</button>
+    <p id="resultado"></p>
+    <br>
+    <br>
+    <button id="cookies" onclick="cargar(this)">Cargar datos via cookies</button>
+    <button id="localStorage" onclick="cargar(this)">Cargar datos via localStorage</button>
+    <button id="localStorageLista" onclick="cargar(this)">Cargar lista de localStorage</button>
+    <button id="sessionStorage" onclick="cargar(this)">Cargar datos via sessionStorage</button>
+    <button id="sessionStorageFecha" onclick="cargar(this)">Cargar fecha guardada en sessionStorage</button>
+
+    <script>
+function getCookie(cName) {
+  const name = cName + "=";
+  const cDecoded = decodeURIComponent(document.cookie); //con cuidado
+  const cArr = cDecoded.split('; ');
+  let res;
+  cArr.forEach(val => {
+    if (val.indexOf(name) === 0) res = val.substring(name.length);
+  })
+  return res
+}
+
+        function cargar(tipo){
+switch (tipo.id){
+ case ("cookies"):
+document.getElementById("resultado").innerHTML = "Has leído las cookies. Sus valores crudos sin procesar son: " + document.cookie + ", sus valores procesados debidamente son: <br>"
+document.getElementById("resultado").innerHTML += getCookie("valor") +" y " +getCookie("valorCaducidad") + ". La segunda cookie no caducará nunca"
+
+ break
+ case ("cookiesCaducidad"):
+ document.getElementById("resultado").innerHTML = "Has leído las cookies. Sus valores crudos sin procesar son: " + document.cookie + ", sus valores procesados debidamente son: <br>"
+document.getElementById("resultado").innerHTML += getCookie("valor") +" y " +getCookie("valorCaducidad")
+
+case "localStorageLista":
+document.getElementById("resultado").innerHTML = "Se ha cargado la lista 'coches' dentro de localStorage: " + localStorage.getItem("coches");
+break
+
+ break
+ case "localStorage":
+ document.getElementById("resultado").innerHTML = "El valor de LocalStorage es: " + localStorage.getItem("valor");
+
+break
+case "sessionStorage":
+document.getElementById("resultado").innerHTML = "El valor de SessionStorage es: " + sessionStorage.getItem("valor");
+break
+case "sessionStorageFecha":
+document.getElementById("resultado").innerHTML = "El valor Fecha de SessionStorage es: " + sessionStorage.getItem("fecha");
+break
+}
+        }
+
+        function guardar(tipo){
+            switch (tipo.id){
+ case ("cookies"):
+    document.cookie = "valor=" + tipo.value + "; secure;";
+ break
+ case ("cookiesCaducidad"):
+     document.cookie = "valorCaducidad=" + tipo.value + "; secure; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+ break
+ case "localStorage":
+localStorage.setItem("valor",tipo.value)
+break
+case "localStorageLista":
+const coches = ["Saab", "Volvo", "BMW", "Toyota", "Honda"];
+localStorage.setItem("coches", coches)
+break
+case "sessionStorage":
+sessionStorage.setItem("valor",tipo.value)
+break
+case "sessionStorageFecha":
+fecha1 = new Date("December 17, 1995 03:24:00");
+sessionStorage.setItem("fecha",fecha1)
+break
+}
+    document.getElementById("resultado").innerHTML ="Valores introducidos guardados. Pulsa los botones para cargarlos"
+}
+
+
+    </script>
+</body>
+</html>

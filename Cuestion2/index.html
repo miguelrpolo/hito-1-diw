@@ -1,39 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos.css">
-    <title>Cuestion2</title>
-</head>
-<body>
-    <p>El fondo es oscuro, los h2 son los enunciados y están en cursiva y en gris</p>
-    <h2>2.1.1 Etiqueta – id – class</h2>
-    <input type="text" placeholder="Este es un input vacío/crudo">
-    <p id="tipo_id">Este párrafo tiene una id</p>
-    <p class="tipo_clase">Este párrafo tiene una clase</p>
-    <h2>2.1.2 Pseudoselectores para enlaces de navegación</h2>
-    <div>
-        <div id="grupo2A">
-            <a class="parrafo1" href="https://www.google.com/" target="blank">¡Pasa el ratón por encima!</a>
-            <a class="parrafo2" href="https://www.google.com/" target="blank">Este párrafo es el último hijo de su bloque. También está palpitando</a>
-            </div>
-    </div>
-    <h2>2.1.3 Selectores secundarios (div a, div &gt;a, div :first-child)</h2>
-    <div>
-        <div id="grupo1A">
-            <p class="parrafo1">Este texto de clase "parrafo1" está dentro del div con id grupo1A que a su vez está dentro de un div normal. Y está forzosamente en mayúsculas</p>
-            </div>
-    </div>
-            <p class="parrafo3">Este párrafo está solo, no tiene a nadie. Excepto su gran sombra blanca</p>
-            <p class="parrafo4">Este párrafo también</p>
 
-            <div class="padre">
-                <p>Este párrafo tiene padre y es el primer hijo, por lo tanto, está tan contento que no es verde, como sus hermanos</p>
-                <p>Este párrafo tiene el mismo padre que el de arriba</p>
-                <p>Este párrafo tiene el mismo padre que el de arriba</p>
-            </div>
-    
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+      <form id="form_ejemplo" onsubmit="return validateForm()">
+        <h1>Formulario</h1>
+        <p id="texto_tecnico"></p>
+        <button class="btn btn-submit" id="boton_scroll" onclick="obligar(this)">Salir de la página</button>
+        <h5>Formulario Hito 1 DWEC</h5>
+        <hr class="sep" />
+        <div class="group">
+          <input type="text" required="required" /><span class="highlight"></span><span class="bar"></span>
+          <label>Nombre</label>
+        </div>
+        <div class="group">
+          <input type="text" required="required" /><span class="highlight"></span><span class="bar"></span>
+          <label>Apellidos</label>
+        </div>
+        <div class="group">
+          <p id="fecha_texto">Fecha de Nacimiento</p>
+          <input type="date" required="required" /><span class="highlight"></span><span class="bar"></span>
+        </div>
+        <h5>Color favorito</h5>
+        <div class="group">
+          <input type="color" required="required" /><span class="highlight"></span><span class="bar"></span>
+        </div>
+        <div class="btn-box">
+          <button class="btn btn-submit" type="submit">Enviar</button>
+          <button class="btn btn-cancel" type="button" onclick="limpiar(lista_elementos)">Limmpiar</button>
+        </div>
+      </form>
+      <h5 id="texto_a_cambiar">Rellena este formulario.</h5>
+
+
+      <table id="tabla">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Fecha de nacimiento</th>
+          <th>Color favorito</th>
+        </tr>
+        <tr>
+          <td>Miguel</td>
+          <td>Rodríguez Polo</td>
+          <td>2001-09-11</td>
+          <td style="background-color: #eabd0b;">#eabd0b</td>
+        </tr>
+      </table>
+    </div>
+
+    <img src="imagen1.jpg" id="imagen" alt="Imagen1">
+
+
+    <script>
+      lista_elementos = document.querySelectorAll("form div.group input");
+      var imagen = document.getElementById("imagen")
+      valores_input = document.querySelectorAll("div.group input");
+      imagen.hidden = true;
+
+      function fnBrowserDetect() {
+        let userAgent = navigator.userAgent;
+        let browserName;
+        if (userAgent.match(/chrome|chromium|crios/i)) {
+          browserName = "Chrome";
+        } else if (userAgent.match(/firefox|fxios/i)) {
+          browserName = "Firefox";
+        } else if (userAgent.match(/safari/i)) {
+          browserName = "Safari";
+        } else if (userAgent.match(/opr\//i)) {
+          browserName = "Opera";
+        } else if (userAgent.match(/edg/i)) {
+          browserName = "Edge";
+        } else {
+          browserName = "Navegador no identificado";
+        }
+        return browserName
+      }
+      var texto = document.getElementById("texto_tecnico").innerText = "Estas usando el navegador " + fnBrowserDetect() + ". Tu ventana tiene " + window.innerWidth + " píxeles de ancho y " + window.innerHeight + " píxeles de alto. Prueba a hacer cambios en la ventana y estos valores se actualizarán Si aun así no quieres hacer el cuestionario, no pasa nada. Solo pulsa este botón"
+      window.addEventListener("resize", function (event) {
+        var texto = document.getElementById("texto_tecnico").innerText = "Estas usando el navegador " + fnBrowserDetect() + ". Tu ventana tiene " + window.innerWidth + " píxeles de ancho y " + window.innerHeight + " píxeles de alto. Prueba a hacer cambios en la ventana y estos valores se actualizarán. Si aun así no quieres hacer el cuestionario, no pasa nada. Solo pulsa este botón"
+      })
+
+      function obligar(texto) {
+        valores_input[0].scrollIntoView()
+        texto.disabled = true;
+        texto.hidden = true;
+        document.getElementById("texto_tecnico").innerHTML = "No puedes salir sin realizar el formulario"
+        window.alert("El formulario es obligatorio")
+      }
+
+      function limpiar(lista_elementos) {
+        lista_elementos.forEach(element => element.value = "");
+        imagen.hidden = true;
+      }
+
+      function insertar_en_tabla(tabla, cosas_a_insertar) {
+        let row = tabla.insertRow(tabla.rows.length);
+        var arr = Array.from(cosas_a_insertar);
+        arr.forEach(element => {
+          let nueva_celda = row.insertCell(element.index)
+          nueva_celda.innerHTML = element.value;
+          if (/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/g.test(element.value)) { //Revisar si es un hexadecimal
+            if (parseInt(element.value.replace('#', ''), 16) < 8388607) nueva_celda.style.color = "#FFFFFF"
+            nueva_celda.style.background = element.value
+          }
+        });
+      }
+
+      function validateForm(e) {
+        e.preventDefault();
+        bandera = true;
+        let resultado = "";
+        let nombre = valores_input[0].value;
+        let apellido = valores_input[1].value;
+        let fecha = valores_input[2].value;
+        let color = valores_input[3].value;
+
+        if ((/[0-9]{1}/g.test(nombre + apellido))) {
+          resultado += "¡Vaya! un nombre o apellido con números. Creo que eso no está bien. Deberías cambiarlo"
+        } else {
+          resultado += "Gracias " + nombre + " " + apellido + " por registrarte en el formulario! Naciste el:" + fecha + " y te gusta el color (en código) " + color + " ¡Disfruta de esta imagen de regalo!"
+          let tabla = document.querySelector("body div.wrapper table#tabla")
+          insertar_en_tabla(tabla, valores_input)
+          limpiar(lista_elementos)
+          imagen.hidden = false;
+          imagen.src = "imagen" + (Math.floor(Math.random() * 3) + 1) + ".jpg";
+        }
+        document.getElementById("texto_a_cambiar").innerText = resultado
+        return bandera;
+      }
+
+    </script>
+
+    <script>
+
+      var form = document.getElementsByTagName("form")[0];
+      form.addEventListener('submit', validateForm);
+    </script>
 </body>
+
 </html>

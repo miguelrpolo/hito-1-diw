@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diferencias var, let y const</title>
+</head>
+<body>
+    <script>
+        var orange = 'orange';
+var apple = 'red';
+    </script>
+    <h1>Diferencias var, let y const</h1>
+<h2>Nota: Esta explicación está diseñada para que estés leyendo el código que se facilita entre los párrafos.</h2>
+<p>Las variables var son las variables globales de Javascript.</p>
+<p>
+JavaScript fue diseñado en 10 días en 1994 para hacer scripts simples en Netscape (el navegador más popular de ese momento que hoy conocemos como Firefox). Nunca se creyó que se convertiría en el lenguaje más popular 20 años después. <br>
+
+   <br> Por el afán de lanzar el lenguaje rápidamente se cometieron muchos errores de diseño. Uno de ellos fue la forma en que se declaran las variables.
+
+   <br> Por un lado, es posible declarar una variable sin utilizar var, let o const, lo que crea una variable global en la aplicación:
+</p>
+<script>
+    nombre = "hola"
+</script>
+<h2>Var contra Let</h2>
+ <p>El problema de las variables declaradas con var es que se comportan diferente que en la mayoría de lenguajes de programación, que limitan el alcance(o contexto) por bloque, es decir, entre llaves ({ y }). Esto no ocurre en JavaScript cuando utilizamos var. Por ejemplo:</p>
+
+ <script>
+     if (true) {
+  var color = "negro"
+}
+console.log(color) // "negro"
+ </script>
+
+ <p>Con var, la única forma de limitar el alcance es dentro de una función:</p>
+ <script>
+     function miFuncion() {
+  var color = "negro"
+}
+console.log(color) // error
+ </script>
+ <p>Esto puede llegar a ocasionar una gran cantidad de probelemas, entre ellos la sobreescritura</p>
+
+ <script>
+if (orange === 'orange') {
+  var orange = 'blue'; // el ambito es global
+  let apple = 'green'; // el ambito está dentro del bloque IF
+
+  console.log(orange);  // azul
+  console.log(apple);  // verde
+} 
+
+console.log(orange); // azul
+console.log(apple); // rojo
+ </script>
+ <p>En este ejemplo, el valor original de la variable orange se pierde completamente en la función debido a la sobreescritura. Javascript no sabe distingir de contexto local o global cuando se trabajo con var.</p>
+
+ <p>A diferencia de var, let trabaja siempre en su bloque, que puede ser un if, un for, un while...etc. Esto impide que se declaren variables let completamente globales, y por lo tanto impide los riesgos derivados.</p>
+
+ <p>Hoy en dia, se recomienda encarecidamente utilizar let lo máximo posible por estas razones.</p>
+ <h2>Const</h2>
+
+ <p>Const es una variable let, pero con 2 peculiaridades</p>
+ <ul>
+     <li>Debe inicializarse. No puede declararse sin valor</li>
+     <script>
+         const direccion = "calle paco"
+     </script>
+     <li>Una vez se le asigna un valor inicial, no puede ser modificado</li>
+     <script>
+         const color_manzana = "rojo"
+         //color_manzana="verde" //error
+     </script>
+ </ul>
+
+ <p>Const es un tipo de variable intransigente, cuyo contenido no puede ser modificado. Su utilidad reside en la memoria que se ahorra al utilizarla.</p>
+ <p>Cuando declaras una variable como let o var, estas reservando una cantidad X de memoria, para los posibles valores que pueda albergar esa variable (Que pueden llegar a ser muy elevados si el programador lo desea). Sin embargo, al usar const, el programa asigna automáticamente solo la memoria necesaria para ese valor.</p>
+ <p></p>
+</body>
+</html>

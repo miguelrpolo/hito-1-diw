@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de variables</title>
+</head>
+<body>
+    <h1>Tipos de variables</h1>
+    <hr>
+    <p>Javascript pertenece al grupo de lenguajes imperativos pero, sin embargo, se caracteriza por estructuras de tipado débil donde la declaración de variables no exige la asociación con un tipo de datos de forma implícita y unívoca.
+
+      <br>  Un tipado blando (o no tipado) significa que las variables son declaradas sin un tipo: los valores pueden modificarse, compararse y operar entre ellos sin necesidad de realizar una conversión previa.</p>
+
+     <h3>Javascript tiene tipo de datos ó ‘tipado’ dinámico</h3>
+
+Javascript tiene un tipo de datos dinámico. Esto significa que una variable puede declararse conteniendo un tipo de dato y, más adelante, asignarle otro tipo mediante una simple asignación. Ejemplo (dentro del código):
+<script>
+var cambioTipo = "hola";  //es un string
+cambioTipo = 89;  //es un número
+</script>
+
+    <br>
+    <h2>Numéros (Number)</h2>
+    <hr>
+    <p>
+ Números enteros y decimales, positivos y negativos.
+<br>
+En otros lenguajes de programación se distingue entre distintos tipos de números (int: entero, float: decimal…), por lo que hay que indicarlo al declarar la variable, pero en Javascript no.
+<br>
+Numero normal: <p id="numero_normal"></p>
+Numero decimal: <p id="numero_decimal"></p>
+Numero negativo: <p id="numero_negativo"></p>
+        <script>
+            var numero = 5;
+            var numero_decimal = 4.1;
+            var numero_negativo = -12;
+
+            document.getElementById("numero_normal").innerText = numero
+            document.getElementById("numero_decimal").innerText = numero_decimal
+            document.getElementById("numero_negativo").innerText = numero_negativo
+        </script>
+       <br> ¿Que ocurre al intentar sumar decimales con enteros? ( 2.1 + (-12))
+       <br> Resultado <p id="suma"></p>
+       <script>
+           document.getElementById("suma").innerText = numero_decimal + numero_negativo
+       </script>
+<br> El resultado es el esperado. Los números en Javascript funcionan y se convierten de forma automática.
+    </p>
+    <br>
+    <h2>Cadenas (String)</h2>
+    <hr>
+    <p>
+        Una o varias cadenas de caracteres alfanuméricos (letras, números, signos puntuación…).
+
+       <br> Las denominamos tipos de datos o variables de texto porque las empleamos para almacenar información de esa naturaleza o porque sus valores los vamos a tratar como texto.
+        
+       <br> Ejemplos: 
+        <ul>
+            <li id="s1">asfa</li>
+            <li id="s2">asa</li>
+            <li id="s3">asa</li>
+            <li id="s4">asa</li>
+            <li id="s5">asa</li>
+        </ul>
+        <script>
+            var nif = "12332112W", 
+            ciudad= "Santiago de Compostela", 
+            codigoPostal = "28001", 
+            telefono = "003423145627"; 
+            ocupacion = "Estudiante de Biología";
+
+            document.getElementById("s1").innerText=nif;
+            document.getElementById("s2").innerText=ciudad;
+            document.getElementById("s3").innerText=codigoPostal
+            document.getElementById("s4").innerText=telefono;
+            document.getElementById("s5").innerText=ocupacion;
+                  </script> 
+       <br> Como vemos en los ejemplos, el código postal o el teléfono, aunque contengan solo números, no nos interesa tratarlos de esa forma (en el sentido de aplicarles operaciones matemáticas: sumarlos, restarlos, comparar si son mayores o menores…). Tiene más sentido tratarlos como cadenas de texto, por lo que asignamos su valor entrecomillado.
+    </p>
+    <h3>Pruebas cruzadas con concatenaciones de String y Number</h3> 
+    <script>
+    var numTexto1= "3"; //variable tipo string-texto al asignar el valor entrecomillado
+    var numTexto2= "5"; //igual tipo que la anterior
+    document.write("Al usar el operador + con las variables string 3 y 5 obtenemos: ");
+    document.write(numTexto1 + numTexto2);  //te aparecerá la cadena "35" , al haber sido tratadas como texto
+    var num1 = 3 ;               //variable tipo number-número al asignar el valor sin comillas
+    var num2 = 5;                //igual tipo que la anterior
+    document.write("<br>");
+    document.write("Al usar el operador + con las variables number 3 y 5 obtenemos: ");
+    document.write(num1 + num2);  //te aparecerá el resultado de la suma: 8, al haber sido tratado como números
+    </script>
+
+    <h1>Booleanos (Banderas,condiciones...etc)</h1>
+    <hr>
+   <br> El nombre viene de la lógica de Boole. Pueden tomar solo dos valores: ‘true‘ o ‘false‘ (verdadero/falso).
+
+
+   <br><br> Se utilizan mucho en las sentencias condicionales, a modo de interruptor, pudiendo equiparar los valores true/false, en ese símil, a ‘encendido’ /apagado’, es decir, que hace que el programa se siga ejecutando por una instrucción o por otra diferente:
+   <br> “Si es verdad, sigue ejecutando X, si es falso, haz Y”.
+
+<br> Estas variables no deberían combinarse con el resto, ya que están mayormente diseñadas para ser usadas en condiciones.
+<script>
+    var boolean = false
+    if(boolean ==true){
+        //esto no ocurre
+    }
+
+    if(boolean ==false){
+        //esto si ocurre
+    }
+
+
+    var bool1 = true;               //variable tipo number-número al asignar el valor sin comillas
+    var num2 = 5;                //igual tipo que la anterior
+    document.write("<br>");
+    document.write("Al usar el operador + con las variables boolean en true y number 5 obtenemos: ");
+    document.write(bool1 + num2);  //te aparecerá el resultado de la suma: 8, al haber sido tratado como números
+    </script>
+
+    <p>¿Cómo es posible este resultado? Esto se debe a que las variables booleanas tienen 2 valores. 0(false) y 1(true).
+<br>Al forzar al programa a sumar un número con un boolean, este ha obtenido su valor 1(true) y lo ha convertido automáticamente en numérico para sumarlo.
+
+<br>Normalmente otros lenguajes de programación más fuertemente tipados no permitirían esto bajo ningñun concepto, pero Javascript lo hace.
+<br>
+<h1>List (Listas)</h1>
+<hr>
+
+Los Arrays ó matrices pueden contener múltiples valores, como un buzón con diversos compartimentos numerados en su interior. Son del tipo objetos:
+
+   <script>
+var granPoblacion = ["Madrid", "Barcelona", "Valencia", "Sevilla"];
+   </script> 
+
+   <br>Poniendo de ejemplo: var granPoblacion = ["Madrid", "Barcelona", "Valencia", "Sevilla"];, Hay dos principales elementos en su estructura: <br>
+
+  <br>  corchetes [  ]:  para incluir los valores
+  <br>  comas (,): para separar los valores dentro del array <br>
+
+    <br> En el array, los valores (que pueden ser numéricos, de texto o una combinación de ellos) se encuentran en posiciones numeradas, empezando a contar desde el cero, no desde el uno. Es decir, los valores de cada elemento del array (a los que se accede con nombreArray[n], siendo n= 0,1,2…) serían: <br>
+
+    <script>
+granPoblacion[0] = Madrid
+ granPoblacion[1] = Barcelona
+ granPoblacion[2] = Valencia
+granPoblacion[3]= Sevilla
+    </script>
+
+
+  <br>  Podrías añadir o cambiar valores dentro del array. Por ejemplo, la sentencia:  granPoblacion[4] = "Zaragoza"; añadiría este valor detrás del valor ‘Sevilla’. Sin embargo es preferible el método push()
+<br> Ahora voy a construir esta lista leyendo el array uno a uno
+  <ul>
+  <script>
+      granPoblacion.forEach(function(ciudad){
+        document.write("<li> " + ciudad + "</li>");
+      })
+  </script>
+  </ul>
+  <br> Las listas no se pueden sumar o concatenar con otras variables de forma primitiva. Ahora voy a intentar sumarle 3 a la lista
+  <script>
+      document.write(granPoblacion + 3);
+  </script>
+  <br>Lo que ocurre es que el 3 simplemente se concatena. La lista se ha impreso ordenada con todos sus elementos. 
+
+</body>
+</html>
