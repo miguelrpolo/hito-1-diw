@@ -1,0 +1,67 @@
+body {
+  background-color: #b9e5ff;
+  font-family: "fuente_propia";
+}
+#tabla_ejemplo {
+  border-collapse: collapse;
+  width: 100%;
+}
+#tabla_ejemplo td,
+#tabla_ejemplo th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+img {
+  padding-top: 100px;
+}
+#tabla_ejemplo tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+#tabla_ejemplo tr:hover {
+  background-color: #ddd;
+}
+#tabla_ejemplo th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #86d3c9;
+  color: white;
+}
+div.contenedor {
+  background: #ffffff;
+  border-radius: 50px;
+  align-content: center;
+  text-align: center;
+  margin: 10px;
+  padding: 5%;
+  box-shadow: 15px 15px 25px grey;
+}
+div#dato {
+  background: #86d3c9;
+  border-radius: 25px;
+  align-content: center;
+  text-align: center;
+  margin: 50px;
+  padding: 2%;
+  box-shadow: 15px 15px 25px #9ad1d1;
+}
+div#texto {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 1px;
+  padding: 1%;
+  margin-bottom: 75px;
+}
+input#nombre {
+  grid-row: 1;
+}
+input#apellidos {
+  grid-row: 2;
+}
+input[type=date] {
+  grid-row: 3;
+}
+@font-face {
+  font-family: "fuente_propia";
+  src: url(fuentes/Rubik-Regular.ttf), url(fuentes/Rubik-Bold.ttf), url(fuentes/Rubik-Italic.ttf);
+}
